@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remove Silence from Audio Online — Free Podcast Tool — Audaro</title>
+<meta name="description" content="Remove silence from audio online for free. Set the threshold, preview the tightened recording, and download it as WAV or MP3. Perfect for podcasts and voice notes.">
+<meta name="keywords" content="remove silence from audio, silence remover online, trim silence podcast, remove pauses audio">
+<link rel="canonical" href="https://audaro.site/tools/remove-silence.html">
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta property="og:title" content="Remove Silence from Audio Online — Free Podcast Tool — Audaro">
+<meta property="og:description" content="Remove silence from audio online for free. Set the threshold, preview the tightened recording, and download it as WAV or MP3. Perfect for podcasts and voice notes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://audaro.site/tools/remove-silence.html">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Audaro Silence Remover","applicationCategory":"MultimediaApplication","operatingSystem":"Any modern browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free online silence remover: cut silent parts out of podcasts and voice recordings, in your browser."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I remove silence from a podcast?","acceptedAnswer":{"@type":"Answer","text":"Open the episode in Audaro Silence Remover, set the threshold to about -35 dB, click Remove silence, listen to the preview, and download the tightened file."}},{"@type":"Question","name":"What threshold should I use?","acceptedAnswer":{"@type":"Answer","text":"Start with -35 dB. If quiet words disappear, lower it to -45 dB. If pauses remain, raise it toward -20 dB."}},{"@type":"Question","name":"Will it cut words that start quietly?","acceptedAnswer":{"@type":"Answer","text":"It can, if the threshold is too high. That is why you always preview before downloading &mdash; and why a small 0.05 s padding is kept around each kept part."}},{"@type":"Question","name":"Does it work on music too?","acceptedAnswer":{"@type":"Answer","text":"It works, but it is made for speech. On music, quiet intros and endings may be treated as silence."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="../index.html" aria-label="Audaro home"><img class="mark-img" src="../assets/audaro-logo.jpg" alt="Audaro logo" width="32" height="32">Audaro</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#tools">Tools</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a class="btn btn-sm nav-cta" href="../index.html#tools">Start free</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="tool-hero">
+  <div class="container">
+    <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Silence Remover</p>
+    <h1>Remove Silence from Audio Online — Free Podcast Tool</h1>
+    <p class="lead">The best free tool to remove silence from audio: open a podcast, voice note or recording, set the silence threshold, preview the result, and download it as WAV or MP3.</p>
+  </div>
+</section>
+<section class="tight" style="padding-top:0">
+  <div class="container">
+    <div class="workspace fade">
+      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Choose an audio file">
+        <div class="dz-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="M6 10l6-6 6 6"/><path d="M4 20h16"/></svg></div>
+        <strong>Drop your audio file here</strong>
+        <p>or click to browse &mdash; MP3, WAV, OGG. Your file never leaves your device.</p>
+        <input type="file" id="fileInput" accept="audio/*,.mp3,.wav,.ogg,.m4a,.flac" style="display:none">
+      </div>
+      <div class="file-info" id="fileInfo"></div>
+      
+      <div class="controls" id="controls" style="display:none">
+        <div class="control-row">
+          <div class="control"><label for="threshold">Silence threshold: <span id="thresholdVal">&minus;35 dB</span> <span class="hint">&mdash; quieter than this counts as silence</span></label>
+            <input type="range" id="threshold" min="-50" max="-10" step="1" value="-35"></div>
+          <div class="control"><label for="minDur">Shortest silence to remove: <span id="minDurVal">0.4 s</span></label>
+            <input type="range" id="minDur" min="0.2" max="1" step="0.1" value="0.4"></div>
+        </div>
+        <div><button class="btn" id="processBtn" type="button">Remove silence</button></div>
+      </div>
+      <p class="status" id="status" role="status"></p>
+      <div class="result" id="result">
+        <h3>Your result</h3>
+        <p class="result-info" id="resultInfo"></p>
+        <audio id="audioPlayer" controls preload="metadata"></audio>
+        <div class="dl-row">
+          <button class="btn" id="dlWav" type="button">Download WAV</button>
+          <button class="btn btn-outline" id="dlMp3" type="button">Download MP3</button>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="section-head">
+      <p class="eyebrow"><span class="dot">&bull;</span> How it works</p>
+      <h2>Three steps, thirty seconds</h2>
+    </div>
+    <div class="steps" style="margin-bottom:64px"><div class="step"><div class="step-num">1</div><h3>Drop your recording</h3><p>MP3, WAV or OGG. It opens instantly &mdash; nothing is uploaded.</p></div><div class="step"><div class="step-num">2</div><h3>Set the threshold</h3><p>Anything quieter than your threshold counts as silence. Start with &minus;35 dB.</p></div><div class="step"><div class="step-num">3</div><h3>Preview and download</h3><p>Listen to the tightened result before you download it as WAV or MP3.</p></div></div>
+
+    <div style="max-width:780px">
+      <div class="section-head">
+        <p class="eyebrow"><span class="dot">&bull;</span> FAQ</p>
+        <h2>Questions about silence remover</h2>
+      </div>
+      <div class="faq-item"><h3>How do I remove silence from a podcast?</h3><p>Open the episode in Audaro Silence Remover, set the threshold to about -35 dB, click Remove silence, listen to the preview, and download the tightened file.</p></div><div class="faq-item"><h3>What threshold should I use?</h3><p>Start with -35 dB. If quiet words disappear, lower it to -45 dB. If pauses remain, raise it toward -20 dB.</p></div><div class="faq-item"><h3>Will it cut words that start quietly?</h3><p>It can, if the threshold is too high. That is why you always preview before downloading &mdash; and why a small 0.05 s padding is kept around each kept part.</p></div><div class="faq-item"><h3>Does it work on music too?</h3><p>It works, but it is made for speech. On music, quiet intros and endings may be treated as silence.</p></div>
+    </div>
+
+    <div style="margin-top:56px">
+      <h3 style="margin-bottom:16px">More free audio tools</h3>
+      <div class="related"><a class="chip" href="../tools/cut-audio.html">Cut Audio</a><a class="chip" href="../tools/remove-vocals.html">Vocal Remover</a><a class="chip" href="../tools/convert-audio.html">Audio Converter</a><a class="chip" href="../tools/volume-booster.html">Volume Booster</a><a class="chip" href="../tools/join-audio.html">Audio Joiner</a><a class="chip" href="../tools/change-speed.html">Speed Changer</a></div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="wordmark" href="../index.html"><img class="mark-img" src="../assets/audaro-logo.jpg" alt="Audaro logo" width="32" height="32">Audaro</a>
+        <p style="margin-top:14px">Free audio tools that run 100% in your browser. Your files never leave your device. No account, nothing to install.</p>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <ul>
+          <li><a href="../tools/cut-audio.html">Cut Audio</a></li>
+          <li><a href="../tools/remove-vocals.html">Vocal Remover</a></li>
+          <li><a href="../tools/convert-audio.html">Audio Converter</a></li>
+          <li><a href="../tools/remove-silence.html">Silence Remover</a></li>
+          <li><a href="../tools/volume-booster.html">Volume Booster</a></li>
+          <li><a href="../tools/join-audio.html">Audio Joiner</a></li>
+          <li><a href="../tools/change-speed.html">Speed Changer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Audaro. All rights reserved.</span>
+      <span>Made for creators everywhere.</span>
+    </div>
+  </div>
+</footer>
+<a class="fab" href="../contact.html" aria-label="Contact us" title="Contact us"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></a>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/lame.all.js"></script>
+<script src="../assets/js/audio-core.js"></script>
+<script src="../assets/js/tools/silence.js"></script>
+</body>
+</html>

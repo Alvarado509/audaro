@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Change Audio Speed Online — Free 0.5x to 2x Speed Changer — Audaro</title>
+<meta name="description" content="Change audio speed online for free: slow down to 0.5x or speed up to 2x, with pitch preserved. Download as WAV or MP3. No upload, no account.">
+<meta name="keywords" content="change audio speed, speed up mp3, slow down audio, audio speed changer, preserve pitch">
+<link rel="canonical" href="https://audaro.site/tools/change-speed.html">
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta property="og:title" content="Change Audio Speed Online — Free 0.5x to 2x Speed Changer — Audaro">
+<meta property="og:description" content="Change audio speed online for free: slow down to 0.5x or speed up to 2x, with pitch preserved. Download as WAV or MP3. No upload, no account.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://audaro.site/tools/change-speed.html">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Audaro Speed Changer","applicationCategory":"MultimediaApplication","operatingSystem":"Any modern browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free online audio speed changer: change speed from 0.5x to 2x with pitch preserved, in your browser."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I speed up an MP3 without changing the pitch?","acceptedAnswer":{"@type":"Answer","text":"Open the file in Audaro Speed Changer, set the speed to 1.5x or 2x, keep Preserve pitch on, click Change speed, and download the result."}},{"@type":"Question","name":"What does preserve pitch do?","acceptedAnswer":{"@type":"Answer","text":"It changes the tempo without changing the pitch, using the SoundTouch algorithm in your browser. Voices stay natural instead of turning into chipmunks."}},{"@type":"Question","name":"Can I slow audio down to transcribe it?","acceptedAnswer":{"@type":"Answer","text":"Yes. Set the speed to 0.5x or 0.75x with pitch preserved &mdash; words stay clear and easy to follow."}},{"@type":"Question","name":"What happens if I turn preserve pitch off?","acceptedAnswer":{"@type":"Answer","text":"The speed change works like an old tape: faster sounds higher-pitched, slower sounds lower-pitched."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="../index.html" aria-label="Audaro home"><img class="mark-img" src="../assets/audaro-logo.jpg" alt="Audaro logo" width="32" height="32">Audaro</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#tools">Tools</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a class="btn btn-sm nav-cta" href="../index.html#tools">Start free</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="tool-hero">
+  <div class="container">
+    <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Speed Changer</p>
+    <h1>Change Audio Speed Online — Free 0.5x to 2x Speed Changer</h1>
+    <p class="lead">The best free tool to change audio speed online: slow down to 0.5&times; or speed up to 2&times;, with the pitch preserved so voices stay natural.</p>
+  </div>
+</section>
+<section class="tight" style="padding-top:0">
+  <div class="container">
+    <div class="workspace fade">
+      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Choose an audio file">
+        <div class="dz-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="M6 10l6-6 6 6"/><path d="M4 20h16"/></svg></div>
+        <strong>Drop your audio file here</strong>
+        <p>or click to browse &mdash; MP3, WAV, OGG. Your file never leaves your device.</p>
+        <input type="file" id="fileInput" accept="audio/*,.mp3,.wav,.ogg,.m4a,.flac" style="display:none">
+      </div>
+      <div class="file-info" id="fileInfo"></div>
+      
+      <div class="controls" id="controls" style="display:none">
+        <div class="control-row">
+          <div class="control"><label for="rate">Speed: <span id="rateVal">1.25&times;</span> <span class="hint">&mdash; 0.5&times; is half speed, 2&times; is double speed</span></label>
+            <input type="range" id="rate" min="0.5" max="2" step="0.05" value="1.25"></div>
+        </div>
+        <label class="check-line"><input type="checkbox" id="preservePitch" checked> Preserve pitch (recommended &mdash; voices stay natural)</label>
+        <div><button class="btn" id="processBtn" type="button">Change speed</button></div>
+      </div>
+      <p class="status" id="status" role="status"></p>
+      <div class="result" id="result">
+        <h3>Your result</h3>
+        <p class="result-info" id="resultInfo"></p>
+        <audio id="audioPlayer" controls preload="metadata"></audio>
+        <div class="dl-row">
+          <button class="btn" id="dlWav" type="button">Download WAV</button>
+          <button class="btn btn-outline" id="dlMp3" type="button">Download MP3</button>
+        </div>
+      </div>
+      <div class="note-box"><b>Note:</b> &ldquo;Preserve pitch&rdquo; uses the SoundTouch algorithm in your browser. It keeps the voice or music at the same pitch while the tempo changes. Turn it off for a classic chipmunk / slow-motion effect.</div>
+    </div>
+
+    <div class="section-head">
+      <p class="eyebrow"><span class="dot">&bull;</span> How it works</p>
+      <h2>Three steps, thirty seconds</h2>
+    </div>
+    <div class="steps" style="margin-bottom:64px"><div class="step"><div class="step-num">1</div><h3>Drop your file</h3><p>MP3, WAV or OGG. It opens instantly &mdash; nothing is uploaded.</p></div><div class="step"><div class="step-num">2</div><h3>Pick a speed</h3><p>From 0.5&times; to 2&times;. Keep &ldquo;preserve pitch&rdquo; on for natural voices.</p></div><div class="step"><div class="step-num">3</div><h3>Download the new version</h3><p>Listen to the result, then download it as WAV or MP3.</p></div></div>
+
+    <div style="max-width:780px">
+      <div class="section-head">
+        <p class="eyebrow"><span class="dot">&bull;</span> FAQ</p>
+        <h2>Questions about speed changer</h2>
+      </div>
+      <div class="faq-item"><h3>How do I speed up an MP3 without changing the pitch?</h3><p>Open the file in Audaro Speed Changer, set the speed to 1.5x or 2x, keep Preserve pitch on, click Change speed, and download the result.</p></div><div class="faq-item"><h3>What does preserve pitch do?</h3><p>It changes the tempo without changing the pitch, using the SoundTouch algorithm in your browser. Voices stay natural instead of turning into chipmunks.</p></div><div class="faq-item"><h3>Can I slow audio down to transcribe it?</h3><p>Yes. Set the speed to 0.5x or 0.75x with pitch preserved &mdash; words stay clear and easy to follow.</p></div><div class="faq-item"><h3>What happens if I turn preserve pitch off?</h3><p>The speed change works like an old tape: faster sounds higher-pitched, slower sounds lower-pitched.</p></div>
+    </div>
+
+    <div style="margin-top:56px">
+      <h3 style="margin-bottom:16px">More free audio tools</h3>
+      <div class="related"><a class="chip" href="../tools/cut-audio.html">Cut Audio</a><a class="chip" href="../tools/remove-vocals.html">Vocal Remover</a><a class="chip" href="../tools/convert-audio.html">Audio Converter</a><a class="chip" href="../tools/remove-silence.html">Silence Remover</a><a class="chip" href="../tools/volume-booster.html">Volume Booster</a><a class="chip" href="../tools/join-audio.html">Audio Joiner</a></div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="wordmark" href="../index.html"><img class="mark-img" src="../assets/audaro-logo.jpg" alt="Audaro logo" width="32" height="32">Audaro</a>
+        <p style="margin-top:14px">Free audio tools that run 100% in your browser. Your files never leave your device. No account, nothing to install.</p>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <ul>
+          <li><a href="../tools/cut-audio.html">Cut Audio</a></li>
+          <li><a href="../tools/remove-vocals.html">Vocal Remover</a></li>
+          <li><a href="../tools/convert-audio.html">Audio Converter</a></li>
+          <li><a href="../tools/remove-silence.html">Silence Remover</a></li>
+          <li><a href="../tools/volume-booster.html">Volume Booster</a></li>
+          <li><a href="../tools/join-audio.html">Audio Joiner</a></li>
+          <li><a href="../tools/change-speed.html">Speed Changer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Audaro. All rights reserved.</span>
+      <span>Made for creators everywhere.</span>
+    </div>
+  </div>
+</footer>
+<a class="fab" href="../contact.html" aria-label="Contact us" title="Contact us"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></a>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/lame.all.js"></script>
+<script src="../assets/js/audio-core.js"></script>
+<script type="module" src="../assets/js/tools/speed.js"></script>
+</body>
+</html>

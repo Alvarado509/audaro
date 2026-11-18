@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Audio Files Online — Free MP3 Merger — Audaro</title>
+<meta name="description" content="Merge MP3, WAV and OGG files into one audio file online for free. Reorder the files, join them, and download a single WAV or MP3. No upload, no account.">
+<meta name="keywords" content="join audio online, merge mp3 online, combine audio files, audio joiner free, merge wav">
+<link rel="canonical" href="https://audaro.site/tools/join-audio.html">
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta property="og:title" content="Join Audio Files Online — Free MP3 Merger — Audaro">
+<meta property="og:description" content="Merge MP3, WAV and OGG files into one audio file online for free. Reorder the files, join them, and download a single WAV or MP3. No upload, no account.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://audaro.site/tools/join-audio.html">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Audaro Audio Joiner","applicationCategory":"MultimediaApplication","operatingSystem":"Any modern browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free online audio joiner: merge several MP3, WAV and OGG files into one, in your browser."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I merge MP3 files online for free?","acceptedAnswer":{"@type":"Answer","text":"Drop the files in Audaro Audio Joiner, arrange them in order, click Join files into one, and download the merged result as MP3 or WAV."}},{"@type":"Question","name":"How many files can I join?","acceptedAnswer":{"@type":"Answer","text":"There is no fixed limit. The only limit is your device's memory, because everything runs in your browser."}},{"@type":"Question","name":"Do the files need the same format?","acceptedAnswer":{"@type":"Answer","text":"No. You can mix MP3, WAV and OGG files &mdash; they are all decoded to the same sample rate before joining."}},{"@type":"Question","name":"Is there a gap between the joined files?","acceptedAnswer":{"@type":"Answer","text":"No. Files are joined end to end, with no added silence."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="../index.html" aria-label="Audaro home"><img class="mark-img" src="../assets/audaro-logo.jpg" alt="Audaro logo" width="32" height="32">Audaro</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#tools">Tools</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a class="btn btn-sm nav-cta" href="../index.html#tools">Start free</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="tool-hero">
+  <div class="container">
+    <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Audio Joiner</p>
+    <h1>Join Audio Files Online — Free MP3 Merger</h1>
+    <p class="lead">The best free tool to join audio files online: drop several files, reorder them, merge them into one track, and download it as WAV or MP3.</p>
+  </div>
+</section>
+<section class="tight" style="padding-top:0">
+  <div class="container">
+    <div class="workspace fade">
+      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Choose an audio file">
+        <div class="dz-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="M6 10l6-6 6 6"/><path d="M4 20h16"/></svg></div>
+        <strong>Drop your audio file here</strong>
+        <p>or click to browse &mdash; MP3, WAV, OGG. Your file never leaves your device.</p>
+        <input type="file" id="fileInput" accept="audio/*,.mp3,.wav,.ogg,.m4a,.flac" style="display:none">
+      </div>
+      <div class="file-info" id="fileInfo"></div>
+      
+      <div class="controls" id="controls" style="display:none">
+        <div class="control"><label>Add more files <span class="hint">&mdash; you can also drop more files on the zone above</span></label>
+          <input type="file" id="moreInput" accept="audio/*,.mp3,.wav,.ogg,.m4a,.flac" multiple>
+        </div>
+        <div><button class="btn" id="processBtn" type="button">Join files into one</button></div>
+      </div>
+      <p class="status" id="status" role="status"></p>
+      <div class="result" id="result">
+        <h3>Your result</h3>
+        <p class="result-info" id="resultInfo"></p>
+        <audio id="audioPlayer" controls preload="metadata"></audio>
+        <div class="dl-row">
+          <button class="btn" id="dlWav" type="button">Download WAV</button>
+          <button class="btn btn-outline" id="dlMp3" type="button">Download MP3</button>
+        </div>
+      </div>
+      <div class="file-info" id="fileListWrap" style="display:none"><b>Files to join</b><ul class="file-list" id="fileList"></ul></div>
+    </div>
+
+    <div class="section-head">
+      <p class="eyebrow"><span class="dot">&bull;</span> How it works</p>
+      <h2>Three steps, thirty seconds</h2>
+    </div>
+    <div class="steps" style="margin-bottom:64px"><div class="step"><div class="step-num">1</div><h3>Drop your files</h3><p>Several MP3, WAV or OGG files at once. They open instantly &mdash; nothing is uploaded.</p></div><div class="step"><div class="step-num">2</div><h3>Arrange the order</h3><p>Move files up or down, or remove one, until the order is right.</p></div><div class="step"><div class="step-num">3</div><h3>Download one file</h3><p>Listen to the merged result, then download it as WAV or MP3.</p></div></div>
+
+    <div style="max-width:780px">
+      <div class="section-head">
+        <p class="eyebrow"><span class="dot">&bull;</span> FAQ</p>
+        <h2>Questions about audio joiner</h2>
+      </div>
+      <div class="faq-item"><h3>How do I merge MP3 files online for free?</h3><p>Drop the files in Audaro Audio Joiner, arrange them in order, click Join files into one, and download the merged result as MP3 or WAV.</p></div><div class="faq-item"><h3>How many files can I join?</h3><p>There is no fixed limit. The only limit is your device's memory, because everything runs in your browser.</p></div><div class="faq-item"><h3>Do the files need the same format?</h3><p>No. You can mix MP3, WAV and OGG files &mdash; they are all decoded to the same sample rate before joining.</p></div><div class="faq-item"><h3>Is there a gap between the joined files?</h3><p>No. Files are joined end to end, with no added silence.</p></div>
+    </div>
+
+    <div style="margin-top:56px">
+      <h3 style="margin-bottom:16px">More free audio tools</h3>
+      <div class="related"><a class="chip" href="../tools/cut-audio.html">Cut Audio</a><a class="chip" href="../tools/remove-vocals.html">Vocal Remover</a><a class="chip" href="../tools/convert-audio.html">Audio Converter</a><a class="chip" href="../tools/remove-silence.html">Silence Remover</a><a class="chip" href="../tools/volume-booster.html">Volume Booster</a><a class="chip" href="../tools/change-speed.html">Speed Changer</a></div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="wordmark" href="../index.html"><img class="mark-img" src="../assets/audaro-logo.jpg" alt="Audaro logo" width="32" height="32">Audaro</a>
+        <p style="margin-top:14px">Free audio tools that run 100% in your browser. Your files never leave your device. No account, nothing to install.</p>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <ul>
+          <li><a href="../tools/cut-audio.html">Cut Audio</a></li>
+          <li><a href="../tools/remove-vocals.html">Vocal Remover</a></li>
+          <li><a href="../tools/convert-audio.html">Audio Converter</a></li>
+          <li><a href="../tools/remove-silence.html">Silence Remover</a></li>
+          <li><a href="../tools/volume-booster.html">Volume Booster</a></li>
+          <li><a href="../tools/join-audio.html">Audio Joiner</a></li>
+          <li><a href="../tools/change-speed.html">Speed Changer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Audaro. All rights reserved.</span>
+      <span>Made for creators everywhere.</span>
+    </div>
+  </div>
+</footer>
+<a class="fab" href="../contact.html" aria-label="Contact us" title="Contact us"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></a>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/lame.all.js"></script>
+<script src="../assets/js/audio-core.js"></script>
+<script src="../assets/js/tools/join.js"></script>
+</body>
+</html>

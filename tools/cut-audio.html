@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cut Audio Online — Free MP3 & WAV Cutter — Audaro</title>
+<meta name="description" content="Cut any MP3 or WAV file online for free. Drag to select on the waveform, trim to the exact second, and download as WAV or MP3. No upload, no account.">
+<meta name="keywords" content="cut audio online, mp3 cutter, trim mp3, trim audio free, cut wav online">
+<link rel="canonical" href="https://audaro.site/tools/cut-audio.html">
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta property="og:title" content="Cut Audio Online — Free MP3 & WAV Cutter — Audaro">
+<meta property="og:description" content="Cut any MP3 or WAV file online for free. Drag to select on the waveform, trim to the exact second, and download as WAV or MP3. No upload, no account.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://audaro.site/tools/cut-audio.html">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Audaro Cut Audio","applicationCategory":"MultimediaApplication","operatingSystem":"Any modern browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free online audio cutter: trim MP3 and WAV files to the exact second, in your browser."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I cut an MP3 online for free?","acceptedAnswer":{"@type":"Answer","text":"Open the file in Audaro Cut Audio, drag on the waveform to select the part you want, click Cut selection, and download the result as MP3 or WAV."}},{"@type":"Question","name":"Is there a file size limit?","acceptedAnswer":{"@type":"Answer","text":"There is no server limit, because nothing is uploaded. Very large files are limited only by your device's memory."}},{"@type":"Question","name":"Will cutting change the sound quality?","acceptedAnswer":{"@type":"Answer","text":"No. Cutting keeps the original audio untouched; the MP3 export is encoded at 192 kbps and the WAV export is lossless."}},{"@type":"Question","name":"Can I cut the middle out of a song?","acceptedAnswer":{"@type":"Answer","text":"Yes. Select the part you want to keep and cut it &mdash; or cut the song twice to keep two parts and join them with the Audio Joiner."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="../index.html" aria-label="Audaro home"><img class="mark-img" src="../assets/audaro-logo.jpg" alt="Audaro logo" width="32" height="32">Audaro</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#tools">Tools</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a class="btn btn-sm nav-cta" href="../index.html#tools">Start free</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="tool-hero">
+  <div class="container">
+    <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Cut Audio</p>
+    <h1>Cut Audio Online — Free MP3 & WAV Cutter</h1>
+    <p class="lead">The best free tool to cut audio online: open a song or recording, drag on the waveform to select the part you want, and download it as WAV or MP3. Your file never leaves your device.</p>
+  </div>
+</section>
+<section class="tight" style="padding-top:0">
+  <div class="container">
+    <div class="workspace fade">
+      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Choose an audio file">
+        <div class="dz-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="M6 10l6-6 6 6"/><path d="M4 20h16"/></svg></div>
+        <strong>Drop your audio file here</strong>
+        <p>or click to browse &mdash; MP3, WAV, OGG. Your file never leaves your device.</p>
+        <input type="file" id="fileInput" accept="audio/*,.mp3,.wav,.ogg,.m4a,.flac" style="display:none">
+      </div>
+      <div class="file-info" id="fileInfo"></div>
+      
+      <div class="wave-wrap" id="waveWrap" style="display:none">
+        <canvas id="waveCanvas" aria-label="Audio waveform. Drag to select the part to keep."></canvas>
+        <div class="wave-times"><span id="timeStart">0:00</span><span>Drag on the waveform to select &mdash; or type the times below</span><span id="timeEnd">0:00</span></div>
+      </div>
+      <div class="controls" id="controls" style="display:none">
+        <div class="control-row">
+          <div class="control"><label for="startInput">Start (seconds)</label><input type="number" id="startInput" min="0" step="0.1" value="0"></div>
+          <div class="control"><label for="endInput">End (seconds)</label><input type="number" id="endInput" min="0" step="0.1" value="0"></div>
+        </div>
+        <div><button class="btn" id="processBtn" type="button">Cut selection</button></div>
+      </div>
+      <p class="status" id="status" role="status"></p>
+      <div class="result" id="result">
+        <h3>Your result</h3>
+        <p class="result-info" id="resultInfo"></p>
+        <audio id="audioPlayer" controls preload="metadata"></audio>
+        <div class="dl-row">
+          <button class="btn" id="dlWav" type="button">Download WAV</button>
+          <button class="btn btn-outline" id="dlMp3" type="button">Download MP3</button>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="section-head">
+      <p class="eyebrow"><span class="dot">&bull;</span> How it works</p>
+      <h2>Three steps, thirty seconds</h2>
+    </div>
+    <div class="steps" style="margin-bottom:64px"><div class="step"><div class="step-num">1</div><h3>Drop your file</h3><p>MP3, WAV or OGG. It opens instantly in your browser &mdash; nothing is uploaded.</p></div><div class="step"><div class="step-num">2</div><h3>Select the part to keep</h3><p>Drag on the waveform, or type the exact start and end times.</p></div><div class="step"><div class="step-num">3</div><h3>Download your clip</h3><p>Listen to the result, then download it as WAV or MP3.</p></div></div>
+
+    <div style="max-width:780px">
+      <div class="section-head">
+        <p class="eyebrow"><span class="dot">&bull;</span> FAQ</p>
+        <h2>Questions about cut audio</h2>
+      </div>
+      <div class="faq-item"><h3>How do I cut an MP3 online for free?</h3><p>Open the file in Audaro Cut Audio, drag on the waveform to select the part you want, click Cut selection, and download the result as MP3 or WAV.</p></div><div class="faq-item"><h3>Is there a file size limit?</h3><p>There is no server limit, because nothing is uploaded. Very large files are limited only by your device's memory.</p></div><div class="faq-item"><h3>Will cutting change the sound quality?</h3><p>No. Cutting keeps the original audio untouched; the MP3 export is encoded at 192 kbps and the WAV export is lossless.</p></div><div class="faq-item"><h3>Can I cut the middle out of a song?</h3><p>Yes. Select the part you want to keep and cut it &mdash; or cut the song twice to keep two parts and join them with the Audio Joiner.</p></div>
+    </div>
+
+    <div style="margin-top:56px">
+      <h3 style="margin-bottom:16px">More free audio tools</h3>
+      <div class="related"><a class="chip" href="../tools/remove-vocals.html">Vocal Remover</a><a class="chip" href="../tools/convert-audio.html">Audio Converter</a><a class="chip" href="../tools/remove-silence.html">Silence Remover</a><a class="chip" href="../tools/volume-booster.html">Volume Booster</a><a class="chip" href="../tools/join-audio.html">Audio Joiner</a><a class="chip" href="../tools/change-speed.html">Speed Changer</a></div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="wordmark" href="../index.html"><img class="mark-img" src="../assets/audaro-logo.jpg" alt="Audaro logo" width="32" height="32">Audaro</a>
+        <p style="margin-top:14px">Free audio tools that run 100% in your browser. Your files never leave your device. No account, nothing to install.</p>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <ul>
+          <li><a href="../tools/cut-audio.html">Cut Audio</a></li>
+          <li><a href="../tools/remove-vocals.html">Vocal Remover</a></li>
+          <li><a href="../tools/convert-audio.html">Audio Converter</a></li>
+          <li><a href="../tools/remove-silence.html">Silence Remover</a></li>
+          <li><a href="../tools/volume-booster.html">Volume Booster</a></li>
+          <li><a href="../tools/join-audio.html">Audio Joiner</a></li>
+          <li><a href="../tools/change-speed.html">Speed Changer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Audaro. All rights reserved.</span>
+      <span>Made for creators everywhere.</span>
+    </div>
+  </div>
+</footer>
+<a class="fab" href="../contact.html" aria-label="Contact us" title="Contact us"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></a>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/lame.all.js"></script>
+<script src="../assets/js/audio-core.js"></script>
+<script src="../assets/js/tools/cut.js"></script>
+</body>
+</html>
